@@ -13,7 +13,16 @@ fun number_in_months(dates: (int * int * int) list, months: int list) =
     if null dates then 0
     else
         if month_in_dates(hd(dates), months) then 1 + number_in_months(tl(dates), months)
-        else number_in_months(tl(dates),months);
+        else number_in_months(tl(dates), months);
 
 fun number_in_month(dates: (int * int * int) list, month: int) =
     number_in_months(dates, [month]);
+
+fun dates_in_months(dates: (int * int * int) list, months: int list) =
+    if null dates then []
+    else
+        if month_in_dates(hd(dates), months) then [hd(dates)]@dates_in_months(tl(dates), months)
+        else dates_in_months(tl(dates), months);
+
+fun dates_in_month(dates: (int * int * int) list, month: int) =
+    dates_in_months(dates, [month]);
