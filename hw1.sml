@@ -9,15 +9,6 @@ fun month_in_dates(date: (int * int * int), months: int list) =
         if #2 date = hd(months) then true
         else month_in_dates(date, tl(months));
 
-fun number_in_months(dates: (int * int * int) list, months: int list) =
-    if null dates then 0
-    else
-        if month_in_dates(hd(dates), months) then 1 + number_in_months(tl(dates), months)
-        else number_in_months(tl(dates), months);
-
-fun number_in_month(dates: (int * int * int) list, month: int) =
-    number_in_months(dates, [month]);
-
 fun dates_in_months(dates: (int * int * int) list, months: int list) =
     if null dates then []
     else
@@ -26,3 +17,10 @@ fun dates_in_months(dates: (int * int * int) list, months: int list) =
 
 fun dates_in_month(dates: (int * int * int) list, month: int) =
     dates_in_months(dates, [month]);
+
+
+fun number_in_months(dates: (int * int * int) list, months: int list) =
+    length(dates_in_months(dates, months));
+
+fun number_in_month(dates: (int * int * int) list, month: int) =
+    number_in_months(dates, [month]);
