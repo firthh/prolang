@@ -6,8 +6,22 @@ fun is_older(date1: int*int*int, date2: int*int*int) =
 fun month_is_date(date: (int * int * int), month: int) =
     #2 date = month;
 
+fun month_in_dates(date: (int * int * int), months: int list) =
+    if null months then false
+    else
+        if #2 date = hd(months) then true
+        else month_in_dates(date, tl(months));
+
+
 fun number_in_month(dates: (int * int * int) list, month: int) =
     if null dates then 0
     else
         if month_is_date(hd(dates), month) then 1 + number_in_month(tl(dates), month)
         else number_in_month(tl(dates),month);
+
+
+fun number_in_months(dates: (int * int * int) list, months: int list) =
+    if null dates then 0
+    else
+        if month_in_dates(hd(dates), months) then 1 + number_in_months(tl(dates), months)
+        else number_in_months(tl(dates),months);
