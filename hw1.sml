@@ -3,7 +3,7 @@ open Int;
 fun is_older(date1: int*int*int, date2: int*int*int) =
     #3 date1 < #3 date2 orelse
     #2 date1 < #2 date2 orelse
-    #1 date1 < #1 date2;
+    #1 date1 < #1 date2
 
 fun month_in_dates(date: (int * int * int), months: int list) =
     if null months then false
@@ -56,3 +56,13 @@ fun month_range(day1: int, day2: int) =
     if day1 > day2
     then []
     else [what_month(day1)]@month_range(day1 + 1, day2);
+
+fun oldest_date(dates: (int * int * int) list, old: (int * int * int)) =
+    if null dates orelse is_older(hd(dates), old)
+    then oldest_date(tl(dates), old)
+    else old;
+
+fun oldest(dates: (int * int * int) list) =
+    if null dates
+    then NONE
+    else SOME(oldest_date(tl(dates), hd(dates)));
