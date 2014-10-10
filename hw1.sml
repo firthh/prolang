@@ -46,3 +46,8 @@ fun number_before_reaching_sum_index(sum: int, numbers: int list, index: int) =
 
 fun number_before_reaching_sum(sum: int, numbers: int list) =
     number_before_reaching_sum_index(sum, numbers, 0);
+
+val month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+fun what_month(days: int) =
+    number_before_reaching_sum(days, month_days) + 1;
