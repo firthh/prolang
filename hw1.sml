@@ -51,3 +51,8 @@ val month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 fun what_month(days: int) =
     number_before_reaching_sum(days, month_days) + 1;
+
+fun month_range(day1: int, day2: int) =
+    if day1 > day2
+    then []
+    else [what_month(day1)]@month_range(day1 + 1, day2);
