@@ -24,3 +24,8 @@ fun number_in_months(dates: (int * int * int) list, months: int list) =
 
 fun number_in_month(dates: (int * int * int) list, month: int) =
     number_in_months(dates, [month]);
+
+fun get_nth(coll: string list, nth: int) =
+    if nth = 1
+    then hd(coll)
+    else get_nth(tl(coll), nth-1);
