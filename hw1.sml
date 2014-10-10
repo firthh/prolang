@@ -37,3 +37,12 @@ val months = ["January", "February", "March", "April", "May", "June",
 
 fun date_to_string(date: (int * int * int)) =
     get_nth(months, #2 date) ^ " "  ^ toString(#3 date) ^ ", " ^ toString(#1 date);
+
+fun number_before_reaching_sum_index(sum: int, numbers: int list, index: int) =
+    if sum - hd(numbers) < 1
+    then index
+    else number_before_reaching_sum_index(sum - hd(numbers), tl(numbers), index + 1);
+
+
+fun number_before_reaching_sum(sum: int, numbers: int list) =
+    number_before_reaching_sum_index(sum, numbers, 0);
