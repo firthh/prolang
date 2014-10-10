@@ -29,3 +29,6 @@ fun get_nth(coll: string list, nth: int) =
     if nth = 1
     then hd(coll)
     else get_nth(tl(coll), nth-1);
+
+fun date_to_string(date: (int * int * int)) =
+    "";
