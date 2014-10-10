@@ -1,3 +1,5 @@
+open Int;
+
 fun is_older(date1: int*int*int, date2: int*int*int) =
     #3 date1 < #3 date2 orelse
     #2 date1 < #2 date2 orelse
@@ -30,5 +32,8 @@ fun get_nth(coll: string list, nth: int) =
     then hd(coll)
     else get_nth(tl(coll), nth-1);
 
+val months = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"];
+
 fun date_to_string(date: (int * int * int)) =
-    "";
+    get_nth(months, #2 date) ^ " "  ^ toString(#3 date) ^ ", " ^ toString(#1 date);
