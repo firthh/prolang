@@ -71,3 +71,10 @@ fun similar_names(subs: string list list, name: {first:string, last:string, midd
     in
         [name]@replace_similar_first_names(similar_names, name)
     end
+
+fun card_color(c: card) =
+    case #1 c of
+        Clubs => Black
+     | Diamonds => Red
+     | Hearts => Red
+     | Spades => Black
