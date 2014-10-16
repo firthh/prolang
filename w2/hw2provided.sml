@@ -21,12 +21,11 @@ exception IllegalMove
 
 (* put your solutions for problem 2 here *)
 
-(*
 fun map(coll, f) =
     case coll of
         [] => []
      | x::xs' => [(f(x))]@(map(xs', f))
-*)
+
 fun reduce (coll, f, acc) =
     case coll of
         [] => acc
@@ -43,8 +42,7 @@ fun is_in (word: string, coll: string list) =
 
 fun all_except_option (s1: string, xs: string list) =
     if is_in(s1, xs)
-    then
-        SOME (filter (xs, (fn w => not( same_string( w, s1 )))))
+    then SOME (filter (xs, (fn w => not( same_string( w, s1 )))))
     else NONE
 
 fun get_substitutions1 (subs: string list list, word: string) =
@@ -53,7 +51,7 @@ fun get_substitutions1 (subs: string list list, word: string) =
       | x::xs' => if is_in(word, x)
                   then case all_except_option(word, x) of
                            NONE => get_substitutions1(xs', word)
-                        | SOME y => y@get_substitutions1(xs', word)
+                         | SOME y => y@get_substitutions1(xs', word)
                   else get_substitutions1(xs', word)
 
 fun get_subs (word: string, subs: string list) =
