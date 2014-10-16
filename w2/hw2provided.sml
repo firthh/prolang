@@ -86,3 +86,10 @@ fun card_value(c: card) =
      | King => 10
      | Queen => 10
      | Jack => 10
+
+fun remove_card(cs: card list, c: card, e: exn) =
+    case cs of
+        [] => raise e
+     | x::xs' => if c = x
+                 then xs'
+                 else [x]@(remove_card(xs', c, e))
