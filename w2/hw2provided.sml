@@ -78,3 +78,11 @@ fun card_color(c: card) =
      | Diamonds => Red
      | Hearts => Red
      | Spades => Black
+
+fun card_value(c: card) =
+    case #2 c of
+        Num x => x
+     | Ace => 11
+     | King => 10
+     | Queen => 10
+     | Jack => 10
