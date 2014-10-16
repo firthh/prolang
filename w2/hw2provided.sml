@@ -57,3 +57,14 @@ fun get_substitutions2(subs: string list list, word: string) =
     in
         f(subs, word, [])
     end
+
+fun replace_similar_first_names(similar_first_names: string list, name: {first:string, last:string, middle:string}) =
+    case similar_first_names of
+    [] => []
+  | x::xs' => [{first=x, last= #last name, middle = #middle name}]@replace_similar_first_names(xs', name)
+
+fun similar_names(subs: string list list, name: {first:string, last:string, middle:string}) =
+    let val similar_names = get_substitutions2(subs, #first name)
+    in
+        [name]@replace_similar_first_names(similar_names, name)
+    end
