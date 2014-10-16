@@ -45,15 +45,18 @@ fun get_substitutions1(subs: string list list, word: string) =
                         | SOME y => y@get_substitutions1(xs', word)
                   else get_substitutions1(xs', word)
 
+fun get_subs(word: string, subs: string list) =
+    if is_in(word, subs)
+    then case all_except_option(word, subs) of
+             NONE => []
+           | SOME y => y
+    else []
+
 fun get_substitutions2(subs: string list list, word: string) =
     let fun f(subs: string list list, word: string, acc: string list)  =
             case subs of
                 [] => acc
-              | x::xs' => f(xs', word, acc@(if is_in(word, x)
-                                            then case all_except_option(word, x) of
-                                                     NONE => []
-                                                   | SOME y => y
-                                            else []))
+              | x::xs' => f(xs', word, acc@(get_subs(word, x)))
     in
         f(subs, word, [])
     end
